@@ -8,9 +8,9 @@ services:
     image: sawtooth-poet2-engine:${ISOLATION_ID}
     build:
       context: .
-      dockerfile: src/core/Dockerfile-installed
     volumes:
-      - .:/project/sawtooth-poet2/
-    entrypoint: "bash -c \"\
-        tail -f /dev/null \
-        \""
+      - .:/build/debs
+    command: |
+      bash -c "
+        cp /tmp/*.deb /build/debs
+      "
